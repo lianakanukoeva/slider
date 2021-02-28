@@ -1,0 +1,128 @@
+/* 
+1. Ограничения в максимальной ширине задавать классам slider и slider__container в пикселях (это обязательно, в процентах все ломается).
+2. Если задать slider__container, тогда slider полностью растянется и стрелки будут по краям экрана, но и ему можно будет задать ограничения в процентах, чтобы не лип к краям.
+3. Если ограничения задать slider, то весь контейнер просто сузится, но стрелки могут выйти за пределы блока и половина не отразится.
+4. Если слайдер будет на всю ширину экрана, то можно будет просто задать slider и slider__container 100%,
+тогда все равно сдвинется. 
+*/
+.slider{
+  position: relative;
+  max-width: 1200px;
+  max-height: 100%;
+  margin: 0 auto;
+  transition: all 0.5s ease;
+}
+.slider__container{
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.slider__list{
+  position: relative;
+  left: 0;
+  top: 0;
+  display: flex;
+}
+.slider__list.fade-off{
+  transition: all 0.5s ease;
+}
+.slider__item{
+  position: relative;
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 100%;
+  transition: all 0.5s ease;
+}
+.slider__item_content{
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  /* если слайдер из одних картинок, то padding лучше закомментить*/
+  padding: 3.5%;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.slider__item_img{
+  position: relative;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  left: 0;
+  top: 0;
+}
+.slider__item_box{
+  max-width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  border: 2px solid #000;
+  transition: all 0.1s ease;
+}
+.slider__arrows{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.slider__arrow{
+  /* стрелки можно увеличить, но не забудьте про размер при hover(ниже) */
+  width: 20px;
+  height: 20px;
+  border: solid #c00;
+  border-width: 0 2px 2px 0;
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+.slider__arrow:hover{
+  width: 25px;
+  height: 25px;
+  border: solid #0CC;
+  border-width: 0 3px 3px 0;
+}
+/* если слайдер будет состоять из одних только картинок то отступы лучше добавить */
+.slider__arrow-left{
+  /* margin-left: 3%; */
+  transform: rotate(135deg);
+}
+.slider__arrow-right{
+  /* margin-right: 3%; */
+  transform: rotate(-45deg);
+}
+.slider__dots{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  padding: 10px;
+  margin: 0 auto;
+}
+.slider__dot{
+  width: 15px;
+  height: 15px;
+  margin: 10px 10px;
+  background-color: #000;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.slider__dot:hover{
+  opacity: 0.7;
+}
+.slider__dot_active{
+  background-color:#0CC;
+}
+@media ( max-width: 768px){
+  .slider{
+      max-width: 100%;
+  }
+  .slider__dots{
+      display: none;
+  }
+}
